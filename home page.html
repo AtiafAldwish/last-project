@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="keywords" content="example, website, products, showcase, demonstration">
+
+    <title>Home Page</title>
+    <style>
+        body {
+            background-color: rgb(193, 211, 242);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* تنسيق الهيدر */
+        header {
+            background-color: #589deb;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* تنسيق اسم الموقع على اليسار */
+        .header-left h6 {
+            margin: 0;
+            color: white;
+        }
+
+        /* تنسيق العناصر في الهيدر على اليمين */
+        .header-right {
+            display: flex;
+            gap: 30px;
+        }
+
+        .header-right h5 {
+            margin: 0;
+            color: white;
+        }
+
+        /* تنسيق الزر */
+        .button {
+            background-color: #fcf3e3;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            border-color: #589deb;
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        .button:hover {
+            background-color: rgb(114, 151, 200);
+        }
+
+        /* تنسيق المحتوى */
+        .content {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .content h2, .content h1 {
+            color: #333;
+        }
+
+        /* تنسيق الزر في الوسط */
+        .buttons {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+  <!-- الهيدر -->
+  <header>
+    <!-- اسم الموقع على اليسار -->
+    <div class="header-left">
+        <h6>StayHealthy</h6>
+    </div>
+
+    <!-- العناصر على اليمين -->
+    <div class="header-right">
+        <h5><a href="profile.html">Profile</a></h5>
+        <h5><a href="index.html">Review</a></h5>
+        <h5 id="instant"><a href="instant.html">Appointments</a></h5>
+        <h5 id="username"></h5> <!-- هذا العنصر سيتم فيه عرض الاسم -->
+        <h5 id="signup" style="display: none;"><a href="signup.html">Sign Up</a></h5> <!-- هذا العنصر سيتم إخفاؤه عند وجود الاسم -->
+        <h5 id="login"><a href="login.html">Login</a></h5>
+    </div>
+  </header>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- المحتوى في الوسط -->
+    <div class="content">
+        <h2>Your Health</h2>
+        <h1>Our Responsibility</h1>
+
+        <div class="buttons">
+            <button type="submit" class="button" onclick="window.location.href='login.html';">Get Started</button>
+        </div>
+    </div>
+
+    <script>
+        // استرجاع الاسم من localStorage وتحديثه في الصفحة
+        var username = localStorage.getItem("username");
+
+        if (username) {
+            document.getElementById("username").innerText = username; // عرض الاسم
+            document.getElementById("signup").style.display = "none"; // إخفاء "Sign Up" إذا كان الاسم موجودًا
+        }
+    </script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الحجز</title>
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    direction: rtl;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+label {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#cancelBtn {
+    background-color: #f44336;
+}
+
+#cancelBtn:hover {
+    background-color: #e53935;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: right;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    width: 30%;
+}
+
+td {
+    background-color: #fafafa;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Booking Details</h1>
+
+        <form id="bookingForm">
+            <label for="doctorName"> Doctor:</label>
+            <input type="text" id="doctorNameInput" required>
+            <br><br>
+
+            <label for="doctorPhone">Phone :</label>
+            <input type="tel" id="doctorPhoneInput" required>
+            <br><br>
+
+            <label for="patientName">Name :</label>
+            <input type="text" id="patientNameInput" required>
+            <br><br>
+
+            <label for="appointmentDate">Date:</label>
+            <input type="date" id="appointmentDateInput" required>
+            <br><br>
+
+            <label for="appointmentTime">Time:</label>
+            <input type="time" id="appointmentTimeInput" required>
+            <br><br>
+
+            <button type="submit">Update Details</button>
+            <button type="button" id="cancelBtn">Cancellation</button>
+        </form>
+
+        <h2>Current booking details</h2>
+
+        <!-- عرض التفاصيل في الجدول -->
+        <table>
+            <tr>
+                <th>Doctor </th>
+                <td id="doctorName">---</td>
+            </tr>
+            <tr>
+                <th>Phone </th>
+                <td id="doctorPhone">---</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td id="patientName">---</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td id="appointmentDate">---</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td id="appointmentTime">---</td>
+
+                <p id="cancelMessage" style="display:none; color: red; text-align: center;">The appointment has been cancelled.</p>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+
+ 
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+    event.preventDefault();  
+
+    
+    const doctorName = document.getElementById("doctorNameInput").value;
+    const doctorPhone = document.getElementById("doctorPhoneInput").value;
+    const patientName = document.getElementById("patientNameInput").value;
+    const appointmentDate = document.getElementById("appointmentDateInput").value;
+    const appointmentTime = document.getElementById("appointmentTimeInput").value;
+
+    
+    document.getElementById("doctorName").textContent = doctorName;
+    document.getElementById("doctorPhone").textContent = doctorPhone;
+    document.getElementById("patientName").textContent = patientName;
+    document.getElementById("appointmentDate").textContent = appointmentDate;
+    document.getElementById("appointmentTime").textContent = appointmentTime;
+
+    
+    document.getElementById("doctorNameInput").value = '';
+    document.getElementById("doctorPhoneInput").value = '';
+    document.getElementById("patientNameInput").value = '';
+    document.getElementById("appointmentDateInput").value = '';
+    document.getElementById("appointmentTimeInput").value = '';
+});
+
+// إضافة حدث عند الضغط على زر "إلغاء الموعد"
+document.getElementById("cancelBtn").addEventListener("click", function() {
+    // مسح جميع التفاصيل المعروضة في الجدول
+    document.getElementById("doctorName").textContent = "---";
+    document.getElementById("doctorPhone").textContent = "---";
+    document.getElementById("patientName").textContent = "---";
+    document.getElementById("appointmentDate").textContent = "---";
+    document.getElementById("appointmentTime").textContent = "---";
+
+    // مسح المدخلات في النموذج
+    document.getElementById("doctorNameInput").value = '';
+    document.getElementById("doctorPhoneInput").value = '';
+    document.getElementById("patientNameInput").value = '';
+    document.getElementById("appointmentDateInput").value = '';
+    document.getElementById("appointmentTimeInput").value = '';
+
+    // عرض رسالة الإلغاء
+    document.getElementById("cancelMessage").style.display = "block";
+
+    // إخفاء الرسالة بعد 5 ثواني
+    setTimeout(function() {
+        document.getElementById("cancelMessage").style.display = "none";
+    }, 5000);
+});
+
+
+
+    </script>
+</body>
+</html>

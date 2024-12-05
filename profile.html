@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: rgb(226, 235, 250);
+                margin: 0;
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 20px;
+            }
+
+            /* تنسيق الحقول */
+            input {
+                padding: 10px;
+                margin: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                width: 300px;
+            }
+
+            /* تنسيق الزر */
+            .button {
+                background-color: #fcf3e3;
+                padding: 10px 20px;
+                border-radius: 25px;
+                cursor: pointer;
+                border-color: #589deb;
+                border-style: solid;
+                border-width: 1px;
+                margin: 10px;
+                width: 320px;
+                font-size: 16px;
+            }
+
+            .button:hover {
+                background-color: rgb(114, 151, 200);
+            }
+
+            .buttons {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <br><br>
+        <h3>Your profile</h3>
+
+        <div class="first">
+            <input type="text" id="lastName" name="name" placeholder="Name" autocomplete="off" required>  
+        </div>
+
+        <div class="first">
+            <input type="tel" id="phone" name="phone" placeholder="Phone" autocomplete="off" required>
+        </div>
+
+        <div class="first">
+            <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required>
+        </div>
+
+        <div class="buttons">
+            <button type="submit" class="button" onclick="saveProfile()">Save</button>
+        </div>
+
+        <script>
+            function saveProfile() {
+                var name = document.getElementById("lastName").value;
+                localStorage.setItem("username", name); // حفظ الاسم في localStorage
+                alert("Profile updated!"); // لإظهار رسالة تأكيد
+            }
+        </script>
+    </body>
+</html>

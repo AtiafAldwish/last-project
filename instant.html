@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors List</title>
+    <style>
+        body {
+            background-color: rgb(193, 211, 242);
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h5 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* تصميم شريط البحث */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            padding: 10px;
+            width: 300px;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+
+        .doctors-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .doctor-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .doctor-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .doctor-card h3 {
+            color: #333;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .doctor-card p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .doctor-card .rating {
+            color: #ff9800;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .doctor-card .rating span {
+            color: #bbb;
+        }
+
+        .doctor-card .rating span.filled {
+            color: #ff9800;
+        }
+
+        /* زر الحجز */
+        .doctor-card .book-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .doctor-card .book-button:hover {
+            background-color: #45a049;
+        }
+
+        /* نافذة الحجز (Popup) */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .popup-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .popup-content button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .popup-content button:hover {
+            background-color: #45a049;
+        }
+
+        .close-popup {
+            background-color: #e04848;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .close-popup:hover {
+            background-color: #d73f3f;
+        }
+
+        /* إضافة التنسيق لبطاقة التفاصيل */
+        .booking-details {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-details h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .booking-details p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- شريط البحث -->
+<div class="search-container">
+    <input type="text" id="search" placeholder="Search for a doctor by specialization or name...">
+    <button onclick="searchDoctor()">Search</button>
+</div>
+
+<h5>4 doctors available in <br>book appointments with minimum wait-time & verified doctor details</h5>
+
+<div class="doctors-container">
+    <!-- Doctor 1 -->
+    <div class="doctor-card" data-specialization="Cardiologist" data-doctor-id="1">
+        <img src="C:/last project/d.jpg" alt="Doctor 1">
+        <h3>Dr. John Doe</h3>
+        <p>Specialization: Cardiologist</p>
+        <p>Experience: 10 years</p>
+        <div class="rating">
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span>☆</span>
+        </div>
+        <button class="book-button" onclick="window.location.href='not.html';">Book appointment</button>
+    </div>
+
+    <!-- Doctor 2 -->
+    <div class="doctor-card" data-specialization="Dermatologist" data-doctor-id="2">
+        <img src="C:/last project/d1.jpg" alt="Doctor 2">
+        <h3>Dr. Jane Smith</h3>
+        <p>Specialization: Dermatologist</p>
+        <p>Experience: 8 years</p>
+        <div class="rating">
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+        </div>
+        <button class="book-button" onclick="window.location.href='not.html';">Book appointment</button>
+    </div>
+
+    <!-- Doctor 3 -->
+    <div class="doctor-card" data-specialization="Pediatrician" data-doctor-id="3">
+        <img src="C:/last project/d2.jpg" alt="Doctor 3">
+        <h3>Dr. Alice Brown</h3>
+        <p>Specialization: Pediatrician</p>
+        <p>Experience: 5 years</p>
+        <div class="rating">
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">☆</span>
+            <span>☆</span>
+        </div>
+        <button class="book-button" onclick="window.location.href='not.html';">Book appointment</button>
+    </div>
+
+    <!-- Doctor 4 -->
+    <div class="doctor-card" data-specialization="Orthopedic Surgeon" data-doctor-id="4">
+        <img src="C:/last project/d2.jpg" alt="Doctor 4">
+        <h3>Dr. Michael Lee</h3>
+        <p>Specialization: Orthopedic Surgeon</p>
+        <p>Experience: 12 years</p>
+        <div class="rating">
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+            <span class="filled">★</span>
+        </div>
+        <button class="book-button" onclick="window.location.href='not.html';">Book appointment</button>
+    </div>
+</div>
+
+<!-- Popup Form -->
+<div class="popup" id="popupForm">
+    <div class="popup-content">
+        <h3>Book Appointment with <span id="doctor-name"></span></h3>
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="tel" id="phone" placeholder="Your Phone Number" required>
+        <input type="date" id="appointment-date" required>
+        <input type="time" id="appointment-time" required>
+        <p>Specialization: <span id="doctor-specialization"></span></p>
+        <button onclick="submitBooking()">Confirm Booking</button>
+        <button class="close-popup" onclick="closeBookingForm()">Close</button>
+    </div>
+</div>
+
+<!-- Booking Details -->
+<div class="booking-details" id="bookingDetails">
+    <h3>Booking Details</h3>
+    <p><strong>Doctor:</strong> <span id="booking-doctor"></span></p>
+    <p><strong>Name:</strong> <span id="booking-name"></span></p>
+    <p><strong>Phone:</strong> <span id="booking-phone"></span></p>
+    <p><strong>Appointment Date:</strong> <span id="booking-date"></span></p>
+    <p><strong>Appointment Time:</strong> <span id="booking-time"></span></p>
+</div>
+
+<script>
+// عرض التفاصيل
+function openBookingForm(doctorName, specialization, doctorId) {
+    document.getElementById('doctor-name').innerText = doctorName;
+    document.getElementById('doctor-specialization').innerText = specialization;
+    document.querySelector('.popup').style.display = 'flex';
+    document.querySelector('.popup').setAttribute('data-doctor-id', doctorId);
+}
+
+// إغلاق نموذج الحجز
+function closeBookingForm() {
+    document.querySelector('.popup').style.display = 'none';
+}
+
+// تقديم الحجز
+function submitBooking() {
+    var name = document.getElementById('name').value;
+    var phone = document.getElementById('phone').value;
+    var date = document.getElementById('appointment-date').value;
+    var time = document.getElementById('appointment-time').value;
+    var doctorName = document.getElementById('doctor-name').innerText;
+    var doctorId = document.querySelector('.popup').getAttribute('data-doctor-id');
+    var doctorSpecialization = document.getElementById('doctor-specialization').innerText;
+
+    if (name && phone && date && time) {
+        // إرسال البيانات إلى الخادم
+        fetch('book_appointment.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                'doctor_id': doctorId,
+                'name': name,
+                'phone': phone,
+                'appointment_date': date,
+                'appointment_time': time
+            }),
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            // تحديث تفاصيل الحجز
+            document.getElementById('booking-doctor').innerText = doctorName;
+            document.getElementById('booking-name').innerText = name;
+            document.getElementById('booking-phone').innerText = phone;
+            document.getElementById('booking-date').innerText = date;
+            document.getElementById('booking-time').innerText = time;
+
+            // إظهار تفاصيل الحجز
+            document.getElementById('bookingDetails').style.display = 'block';
+            closeBookingForm();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error booking the appointment.');
+        });
+    } else {
+        alert('Please fill in all fields!');
+    }
+}
+</script>
+
+</body>
+</html>

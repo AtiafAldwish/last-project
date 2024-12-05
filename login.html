@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-color: rgb(226, 235, 250);
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2b3d63;
+        }
+
+        h3 {
+            color: #4a6f8b;
+        }
+
+        h4 {
+            color: #2b3d63;
+        }
+
+        /* تنسيق الحقول */
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        /* تنسيق الزر */
+        .button {
+            background-color: #fcf3e3;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            border-color: #589deb;
+            border-style: solid;
+            border-width: 1px;
+            margin: 10px;
+            width: 320px;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: rgb(114, 151, 200);
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buttons-red .button {
+            background-color: #fcf3e3;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            border-color: #e04848;
+            border-style: solid;
+            border-width: 1px;
+            margin-top: 10px;
+            width: 320px;
+        }
+
+        .buttons-red .button:hover {
+            background-color: rgb(215, 73, 73);
+        }
+
+        /* تنسيق رابط "Sign up" */
+        .signup-link {
+            color: #2b3d63;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link:hover {
+            color: #589deb;
+        }
+
+        /* تنسيق رسالة الخطأ */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Login</h1>
+    <h3>Are you a new member? <a href="signup.html" class="signup-link">Sign up here</a></h3>
+
+    <div class="first">
+        <input type="email" id="email" placeholder="Email" autocomplete="off" required>
+    </div>
+
+    <div class="first">
+        <input type="password" id="password" placeholder="Password" autocomplete="off" required>
+    </div>
+
+    <div class="buttons">
+        <button type="submit" class="button" onclick="validateLogin();">Login</button>
+    </div>
+
+    <div class="buttons-red">
+        <button type="reset" class="button">Reset</button>
+    </div>
+
+    <h4>Forgot password?</h4>
+
+    <!-- رسالة الخطأ هنا -->
+    <div id="error-message" class="error-message"></div>
+
+    <script>
+        
+        function validateLogin() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var errorMessage = document.getElementById("error-message");
+
+           
+            if (email === "" || password === "") {
+                errorMessage.innerText = "Please fill in all fields.";
+                return;
+            }
+
+           
+            var correctPassword = "password123"; 
+            if (password !== correctPassword) {
+                errorMessage.innerText = "Incorrect password. Please try again.";
+                return;
+            }
+
+            
+            window.location.href = "home page.html"; 
+        }
+    </script>
+
+</body>
+</html>
+

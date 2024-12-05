@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: rgb(226, 235, 250);
+                margin: 0;
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .button {
+                background-color: #fcf3e3;
+                padding: 10px 20px;
+                border-radius: 25px;
+                cursor: pointer;
+                border-color: #589deb;
+                border-style: solid;
+                border-width: 1px;
+                margin: 10px;
+                width: 320px;
+                font-size: 16px;
+            }
+
+            .button:hover {
+                background-color: rgb(114, 151, 200);
+            }
+
+            .buttons {
+                margin-top: 20px;
+            }
+
+            .first {
+                margin-bottom: 15px;
+            }
+
+            #message {
+                margin-top: 20px;
+                color: green;
+                font-size: 18px;
+                display: none;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <h2>Give your review</h2>
+
+        <form id="reviewForm">
+            <div class="first">
+                <input type="text" id="doctorName" name="doctorName" placeholder="Doctor's Name" autocomplete="off" required>  
+            </div>
+
+            <div class="first">
+                <input type="text" id="specialization" name="specialization" placeholder="Specialization" autocomplete="off" required>
+            </div>
+
+            <div class="first">
+                <input type="text" id="patientName" name="patientName" placeholder="Your Name" autocomplete="off" required>
+            </div>
+
+            <div class="first">
+                <input type="tel" id="review" name="review" placeholder="Your Review" autocomplete="off" required>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="button">Submit</button>
+            </div>
+        </form>
+
+        <!-- رسالة تأكيد بعد الإرسال -->
+        <p id="message">Thank you for your review!</p>
+
+        <script>
+            // إضافة الحدث عند إرسال النموذج
+            document.getElementById("reviewForm").addEventListener("submit", function(event) {
+                event.preventDefault();  // منع الإرسال الفعلي للنموذج
+
+                // الحصول على القيم المدخلة
+                const doctorName = document.getElementById("doctorName").value;
+                const specialization = document.getElementById("specialization").value;
+                const patientName = document.getElementById("patientName").value;
+                const review = document.getElementById("review").value;
+
+                // تخزين البيانات في localStorage
+                localStorage.setItem("doctorName", doctorName);
+                localStorage.setItem("specialization", specialization);
+                localStorage.setItem("patientName", patientName);
+                localStorage.setItem("review", review);
+
+                // الانتقال إلى الصفحة الثانية لعرض البيانات
+                window.location.href = "reviewPage.html";
+            });
+        </script>
+
+    </body>
+</html>

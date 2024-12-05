@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: rgb(226, 235, 250);
+                margin: 0;
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 20px;
+            }
+
+            table {
+                width: 80%;
+                margin: 20px auto;
+                border-collapse: collapse;
+            }
+
+            table, th, td {
+                border: 1px solid #ddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            .button {
+                background-color: #fcf3e3;
+                padding: 10px 20px;
+                border-radius: 25px;
+                cursor: pointer;
+                border-color: #589deb;
+                border-style: solid;
+                border-width: 1px;
+                margin: 10px;
+                width: 200px;
+                font-size: 16px;
+            }
+
+            .button:hover {
+                background-color: rgb(114, 151, 200);
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <h2>Review Details</h2>
+
+        <table>
+            <tr>
+                <th>Doctor's Name</th>
+                <th>Specialization</th>
+                <th>Patient's Name</th>
+                <th>View report</th>
+                <th>Download report</th>
+            </tr>
+            <tr>
+                <td id="doctorName"></td>
+                <td id="specialization"></td>
+                <td id="patientName"></td>
+                <td id="review"></td>
+            </tr>
+        </table>
+<br>
+<br>
+<br>
+        <div>
+            <button onclick="window.location.href='index.html'" class="button">Go Back</button>
+            <button onclick="window.location.href='rev.html'" class="button">Go to review</button>
+        </div>
+
+        <script>
+            // استرجاع البيانات من localStorage وعرضها في الجدول
+            document.getElementById("doctorName").textContent = localStorage.getItem("doctorName");
+            document.getElementById("specialization").textContent = localStorage.getItem("specialization");
+            document.getElementById("patientName").textContent = localStorage.getItem("patientName");
+            document.getElementById("review").textContent = localStorage.getItem("review");
+        </script>
+
+    </body>
+</html>
